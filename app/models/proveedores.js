@@ -16,18 +16,18 @@ const getProveedor = async(req, res, proveedor_id) => {
     return await db.consulta(req, res, query);
 }
 
-const setProveedor = async(req, res, nombre, imagen) => {
+const setProveedor = async(req, res, nombre) => {
     query ={
-        text: 'INSERT INTO public.proveedores( nombre, imagen) VALUES ($1, $2);',
-        values : [nombre, imagen]
+        text: 'INSERT INTO public.proveedores( nombre) VALUES ($1 );',
+        values : [nombre]
     };
     await db.consulta(req, res, query);
 }
 
-const updateProveedor = async(req, res, proveedor_id, nombre, imagen) => {
+const updateProveedor = async(req, res, proveedor_id, nombre) => {
     query ={
-        text: 'UPDATE public.proveedores SET nombre=$2, imagen=$3 WHERE proveedor_id=$1;',
-        values : [proveedor_id, nombre, imagen]
+        text: 'UPDATE public.proveedores SET nombre=$2 WHERE proveedor_id=$1;',
+        values : [proveedor_id, nombre]
     };
     await db.consulta(req, res, query);
 }
@@ -40,10 +40,29 @@ const deleteProveedor = async(req, res, proveedor_id) => {
     await db.consulta(req, res, query);
 }
 
+
+const updateProveedorImagen = async(req, res, proveedor_id, imagen) => {
+    query ={
+        text: 'UPDATE public.proveedores SET imagen=$2 WHERE proveedor_id=$1;',
+        values : [proveedor_id, imagen]
+    };
+    await db.consulta(req, res, query);
+}
+
+const deleteProveedorImagen = async(req, res, proveedor_id) => {
+    query ={
+        text: 'UPDATE public.proveedores SET imagen=NULL WHERE proveedor_id=$1;',
+        values : [proveedor_id]
+    };
+    await db.consulta(req, res, query);
+}
+
 module.exports = {
     getProveedores,
     getProveedor,
     setProveedor,
     updateProveedor,
-    deleteProveedor
+    deleteProveedor,
+    updateProveedorImagen,
+    deleteProveedorImagen
   }

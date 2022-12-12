@@ -1,7 +1,6 @@
 const express = require('express');
 const proveedor = require('../controllers/proveedores');
 const validator = require('../middleware/validator/proveedores');
-const logger = require('../utils/logger');
 const handleError = require('../helpers/handleError');
 
 const router = express.Router();
@@ -18,17 +17,12 @@ const router = express.Router();
  *              nombre:
  *                  type: string
  *                  description: nombre de la proveedor
- *              imagen:
- *                  type: string
- *                  description: imagen del proveedor
  *          required:
  *              - proveedor_id
  *              - nombre
- *              - imagen
  *          example:
  *              proveedor_id: 1
  *              nombre: Proveedor S.A.
- *              imagen: aaaaaaaaaa
  */
     
 /**
@@ -179,5 +173,6 @@ router.delete('/proveedores/:id', validator.validateDelete, async (req, res) => 
         handleError.error(req, res, err);
     }
 });
+
 
 module.exports = router;

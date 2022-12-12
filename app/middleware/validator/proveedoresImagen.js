@@ -15,29 +15,16 @@ const validate = (req, res, next) => {
     }
 }
 
-const validateCreate = [
-    validator.check('nombre')
+const validateGet = [
+    validator.check('id')
     .exists()
     .notEmpty(),
     (req, res, next) =>{
         validate(req, res, next)
     }
 ]
-const validateGet = [
-    validator.check('id')
-    .exists()
-    .notEmpty()
-    .isNumeric(),
-    (req, res, next) =>{
-        validate(req, res, next)
-    }
-]
 const validateUpdate = [
     validator.check('proveedor_id')
-    .exists()
-    .notEmpty()
-    .isNumeric(),
-    validator.check('nombre')
     .exists()
     .notEmpty(),
     (req, res, next) =>{
@@ -54,5 +41,5 @@ const validateDelete = [
 ]
 
 module.exports = {
-    validateCreate, validateGet, validateUpdate, validateDelete
+    validateGet, validateUpdate, validateDelete
 }

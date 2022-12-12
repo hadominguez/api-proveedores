@@ -1,4 +1,5 @@
 const proveedores = require('./routes/proveedores');
+const proveedoresImagen = require('./routes/proveedoresImagen');
 const path = require('path');
 const ConfigEnv = require('./config/config');
 
@@ -20,6 +21,6 @@ const swaggerSpec = {
 };
 
 module.exports = function (app){
-    app.use("/api", proveedores);
+    app.use("/api", proveedores, proveedoresImagen);
     app.use("/api-doc", swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)));
 }
